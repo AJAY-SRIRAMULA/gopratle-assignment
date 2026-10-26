@@ -1,0 +1,16 @@
+# Optional Render blueprint for the backend. Secrets are NOT stored here: set them in the Render dashboard.
+services:
+  - type: web
+    name: gopratle-requirements-api
+    runtime: node
+    rootDir: backend
+    buildCommand: npm install --omit=dev
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: MONGODB_URI
+        sync: false
+      - key: FRONTEND_URL
+        sync: false
